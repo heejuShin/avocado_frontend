@@ -1,23 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'app.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'homeScreen.dart';
+import 'aiTalk.dart';
+import 'study.dart';
+import 'myPage.dart';
+/**
+ * todo
+ *
+ */
 
 void main() {
   runApp(Avocado());
 }
-/*
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Avocado',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
-      home: HomePage(title: 'Avocado'),
-    );
-  }
-}*/
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -30,7 +28,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
-
+  //todo
+  //Navigator.pushNamed
+  ListTile drawerItem(String image, String name){
+    return new ListTile(leading: Image.asset(
+      'assets/images/icons/'+image+'.png',
+      ),
+      title: Text(name,
+      style: TextStyle(
+        fontSize: 20,
+        fontFamily: 'NotoSansCJKkr',
+      )),
+      onTap: () {
+        Navigator.pop(context);
+      },
+    );
+  }
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -43,6 +56,19 @@ class _HomePageState extends State<HomePage> {
       _selectedIndex = index;
     });
   }
+
+  final List<Widget> _tabWidgets = [
+    HomeScreen(),
+    AiTalkPage(),
+    StudyPage(),
+    MyPage(),
+  ];
+  final List<String> appbarImg = [
+    "avocado",
+    "aiTalk",
+    "study",
+    "myPage"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.fromLTRB(14.0, 2.0, 2.0, 2.0),
           //padding: const EdgeInsets.all(0),
         child: Image.asset(
-          "assets/images/logo/AVocaDo.png",
+          "assets/images/logo/"+appbarImg[_selectedIndex]+".png",
           fit: BoxFit.cover,
           ),
         ),
@@ -82,139 +108,103 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-            child: IconButton(
-              icon: Image.asset('assets/images/icons/icon_menu.png'),
-              color: Color.fromRGBO(129, 154, 33, 1.0),
-              iconSize: 28,
-              onPressed: () {
-                //Navigator.pushNamed(context, '/dataAnalysis');
-              }),
-          ),
-        ],
-      ),
-      body: Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-          child : Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.width * 0.73,
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      print('Card tapped.');
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+            child: Builder(
+              builder: (context) {
+                return IconButton(
+                    icon: Image.asset('assets/images/icons/icon_menu.png'),
+                    color: Color.fromRGBO(129, 154, 33, 1.0),
+                    iconSize: 28,
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                      //Navigator.pushNamed(context, '/dataAnalysis');
+                    });
+                  }
+                ),
+                ),
+                ],
+                ),
+                body: _tabWidgets[_selectedIndex],
+                endDrawer: Drawer(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                  Container(
+                    height: 110.0,
+                    child: DrawerHeader(
+                      child: Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          alignment: Alignment(1.0, 0.0),
+                          child: InkWell(
+                            onTap:(){Navigator.pop(context);},
+                            child: Image.asset(
+                              'assets/images/icons/icon_menu_white.png',
+                            ),
+                          ),
                       ),
-                      //color: Colors.blue,
-                      color: Color.fromRGBO(231, 241, 195, 1),
-                      //child: Text("hello?"),
+                      decoration: BoxDecoration(
+                      color: Color.fromRGBO(129, 154, 33, 1.0),
+                          ),
+                        ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
+                      child: Row(
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(300.0),
+                            //radius: 25,
+                            child: Container(
+                              width: 80,
+                              height: 80,
+                              child: Image.asset(
+                                'assets/images/icons/icon_profile.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text('닉네임',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: 'NotoSansCJKkr',
+                                fontWeight: FontWeight.w700,
+                              )),
+                        ]
+                      ),
                     ),
                   ),
-                )
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10.0, 0.0, 0.0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                        children: <Widget>[
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.43,
-                            height: MediaQuery.of(context).size.width * 0.39,
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {
-                                print('Card tapped.');
-                              },
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                color: Color.fromRGBO(255, 247, 204, 1),
-                                //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                                //child: Text("hello?"),
-                              ),
-                            ),
-                          ),
-                        SizedBox(width: MediaQuery.of(context).size.width * 0.14 - 40), //오른쪽 정렬을 위해
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.43,
-                          height: MediaQuery.of(context).size.width * 0.39,
-                          child: InkWell(
-                            splashColor: Colors.blue.withAlpha(30),
-                            onTap: () {
-                              print('Card tapped.');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              color: Color.fromRGBO(221, 241, 255, 1),
-                              //child: Text("hello?"),
-                            ),
-                          ),
-                        ),
-                        ],
+                    Container(
+                      color: Color(0xfff0f0f0),
+                      height: 10,
                     ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.43,
-                          height: MediaQuery.of(context).size.width * 0.39,
-                          child: InkWell(
-                            splashColor: Colors.blue.withAlpha(30),
-                            onTap: () {
-                              print('Card tapped.');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              color: Color.fromRGBO(253, 228, 211, 1),
-                              //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                              //child: Text("hello?"),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: MediaQuery.of(context).size.width * 0.14 - 40),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.43,
-                          height: MediaQuery.of(context).size.width * 0.39,
-                          child: InkWell(
-                            splashColor: Colors.blue.withAlpha(30),
-                            onTap: () {
-                              print('Card tapped.');
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              color: Color.fromRGBO(255, 226, 255, 1),
-                              //child: Text("hello?"),
-                            ),
-                          ),
-                        ),
-                      ],
+                    drawerItem('setting', '설정'),
+                    Container(
+                      color: Color(0xfff0f0f0),
+                      height: 10,
                     ),
-                    /*SizedBox(width: 50,height: 10,
-                      child: const DecoratedBox(
-                        decoration: const BoxDecoration(
-                            color: Colors.red
-                        ),
-                      ),)*/
+                    drawerItem('notice', '공지사항'),
+                    drawerItem('ask', '자주 묻는 질문'),
+                    drawerItem('inquiry', '1:1 문의하기'),
+                    Container(
+                      color: Color(0xfff0f0f0),
+                      height: 10,
+                    ),
+                    drawerItem('term1', '서비스 이용약관'),
+                    drawerItem('term2', '개인정보처리방침'),
+                    drawerItem('term3', '위치기반서비스 이용약관'),
+                    Container(
+                      color: Color(0xfff0f0f0),
+                      height: 500,
+                      ),
+                    //),
+
                   ],
-                )
-              )
-            ],
-          )
-        ),
+                ),
+            ),
       bottomNavigationBar:
       SizedBox(
         //height: 90,
@@ -273,3 +263,4 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),*/
+

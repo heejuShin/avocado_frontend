@@ -1,9 +1,226 @@
 import 'package:flutter/material.dart';
+
+class MyPage extends StatefulWidget {
+  @override
+  _MyPageState createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.zero,
+        children: [
+          InkWell(
+            onTap: () async {
+              await Navigator.pushNamed(
+                context, '/loginAgain',
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.fromLTRB(25, 10, 0, 10),
+              child: Row(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(300.0),
+                      //radius: 25,
+                      child: Container(
+                        width: 90,
+                        height: 90,
+                        child: Image.asset(
+                          'assets/images/icons/icon_profile.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 15),
+                    Text('닉네임',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ]
+              ),
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 5,
+          ),
+            InkWell(
+            onTap: () {
+              //Navigator.pop(context);
+            },
+            child: Container(
+                padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
+                child: Text(
+                  "21800412@handong.edu",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: 'NotoSansCJKKR',
+                  ),
+                )
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 4,
+          ),
+          InkWell(
+            onTap: () {
+            },
+            child: Container(
+                padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
+                child: Text(
+                  "010-1234-5678",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: 'NotoSansCJKKR',
+                  ),
+                )
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 4,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/childProfile');
+            },
+            child: Container(
+                padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
+                child: Row(
+                  children: [
+                    Text(
+                      "아이프로필",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'NotoSansCJKKR',
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width - 140),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Color.fromRGBO(155, 155, 155, 1.0),
+                    )
+                  ],
+                )
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 4,
+          ),
+          InkWell(
+            onTap: () {
+            },
+            child: Container(
+                padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
+                child: Row(
+                  children: [
+                    Text(
+                      "비밀번호 변경",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'NotoSansCJKKR',
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width - 157),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Color.fromRGBO(155, 155, 155, 1.0),
+                    )
+                  ],
+                )
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 4,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/inquiry');
+            },
+            child: Container(
+                padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
+                child: Row(
+                  children: [
+                    Text(
+                      "1:1 문의하기",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'NotoSansCJKKR',
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width - 149),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Color.fromRGBO(155, 155, 155, 1.0),
+                    )
+                  ],
+                )
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 4,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/withdraw');
+            },
+            child: Container(
+                padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
+                child: Row(
+                  children: [
+                    Text(
+                      "회원탈퇴",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'NotoSansCJKKR',
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width - 126),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Color.fromRGBO(155, 155, 155, 1.0),
+                    )
+                  ],
+                )
+            ),
+          ),
+          Container(
+            color: Color(0xfff0f0f0),
+            height: 4,
+          ),
+        ],
+      );
+
+    throw UnimplementedError();
+  }
+
+}
+
+/*import 'package:flutter/material.dart';
 import 'package:card_settings/card_settings.dart';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'user.dart';
+
+
 
 typedef LabelledValueChanged<T, U> = void Function(T label, U value);
 bool loaded = false;
@@ -18,8 +235,8 @@ final FocusNode _descriptionNode = FocusNode();
 
 class settingPage extends StatefulWidget{
 
-  @override
-  _settingPageState createState() => _settingPageState();
+  //@override
+  //_settingPageState createState() => _settingPageState();
 }
 
 class _settingPageState extends State<settingPage> {
@@ -103,7 +320,7 @@ class ExampleFormState extends State<ExampleForm> {
   }
 
   void initModel() async {
-    _settingModel = SettingModel();
+    //_settingModel = SettingModel();
 
     setState(() => loaded = true);
   }
@@ -237,4 +454,4 @@ class ExampleFormState extends State<ExampleForm> {
       },
     );
   }
-}
+}*/

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'main.dart';
 import 'aiTalk.dart';
+import 'login.dart';
+import 'signUp.dart';
+import 'studySelect.dart';
+import 'myPage/all.dart';
+import 'studyDetail/all.dart';
 
 class Avocado extends StatelessWidget {
   @override
@@ -14,17 +19,23 @@ class Avocado extends StatelessWidget {
           //accentColor:  global.accent,
         ),
         home: HomePage(title: 'Avocado'),
-        initialRoute: '/home', // /login
+        initialRoute: '/login', // /login
         routes: {
           '/home': (context) => HomePage(title: 'Avocado'),
           '/aiTalk': (context) => AiTalkPage(),
-          /*'/login': (context) => SplashScreen(),
-          '/home': (context) => myCalendar(),
-          '/addTimeTable': (context) => addTimeTable(),
-          '/editTimeTable': (context) => editTimeTable(),
-          '/setting': (context) => settingPage(),
-          '/dataAnalysis': (context) => dataAnalysisPage(),
-          '/addBySpeech' : (context) => SpeechPage()*/
+          '/login': (context) => SplashScreen(),
+          '/loginAgain': (context) => LoginPage(),
+          '/signUp1': (context) => SignUp1Page(),
+          '/signUp2': (context) => SignUp2Page(),
+          '/childProfile': (context) => ChildProfile(),
+          '/addChild': (context) => addChild(),
+          '/inquiry': (context) => Inquiry(),
+          '/withdraw': (context) => WithDraw(),
+          '/studySelect': (context) => StudySelect(),
+          '/repeat': (context) => Repeat(),
+          '/picture': (context) => Picture(),
+          '/coloring': (context) => Coloring(),
+          '/sentence': (context) => Sentence(),
         }
     );
   }
